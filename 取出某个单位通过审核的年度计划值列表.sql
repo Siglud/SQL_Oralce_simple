@@ -1,4 +1,4 @@
---ȡ��ĳ����λͨ����˵���ȼƻ�ֵ�б�
+--取出某个单位通过审核的年度计划值列表
   SELECT SUM(FD.TOTAL_FUND),RPT.ORG_NO
        FROM PM_ALP_CREATE CRT, PM_ALP_RPT RPT,PM_BASE_INFO PBI ,
        PM_ALP_RPT_DETAIL DET

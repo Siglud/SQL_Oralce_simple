@@ -1,6 +1,6 @@
---2012.07.03�޸�����ȼƻ���ȡֵ����Դ����������ͼȡֵ��ȥ���˵���û��ֵ��ȡ���µ�ȡֵ��ʽ
---�޸Ĺ���Ĺ�˾��Ϣ����Ͷ������������û��ֵ��ȡ�ϸ��·ݵ���ֵ
---2012.5.10��������������ϱ�����ȼƻ�ֵΪ�գ���ô����ȼƻ�����ȡֵ��������ԭ�еķ�ʽȡֵ
+--2012.07.03修改了年度计划的取值数据源，不再由视图取值；去掉了当月没有值则取上月的取值方式
+--修改过后的公司信息建设投入表，如果当月没有值则取上个月份的数值
+--2012.5.10修正了如果本月上报的年度计划值为空，那么从年度计划表中取值，否则按照原有的方式取值
 WITH THISYEARS AS
  (SELECT 2012 THISYEAR FROM DUAL),
 THISMONTHS AS
@@ -24,28 +24,28 @@ YEARPLAN AS
  GROUP BY R.ORG_NO)
 SELECT OGG.ORGAN_CODE AS ORG_NO,
        DECODE(OGG.ORGAN_NAME,
-              '�����������޹�˾',
-              '�����ֲ�',
-              '�����������޹�˾',
-              '�����ֲ�',
-              '���е������޹�˾',
-              '���зֲ�',
-              '�������޹�˾����',
-              '�����ֲ�',
-              '�����������޹�˾',
-              '�����ֲ�',
-              'ֱ����λ',
-              'ֱ����λ�ϼ�',
-              '��������',
-              '��������ϼ�',
-              '��������',
-              '��������ϼ�',
-              '��������',
-              '��������ϼ�',
-              '���е���',
-              '��������ϼ�',
-              '��������',
-              '��������ϼ�',
+              '华北电网有限公司',
+              '华北分部',
+              '华东电网有限公司',
+              '华东分部',
+              '华中电网有限公司',
+              '华中分部',
+              '东北有限公司电网',
+              '东北分部',
+              '西北电网有限公司',
+              '西北分部',
+              '直属单位',
+              '直属单位合计',
+              '华北电网',
+              '华北区域合计',
+              '东北电网',
+              '东北区域合计',
+              '华东电网',
+              '华东区域合计',
+              '华中电网',
+              '华中区域合计',
+              '西北电网',
+              '西北区域合计',
               OGG.ORGAN_NAME) AS ORG_NAME,
               OGG.POINT_CODE,
        NVL(NDJH, 0) YEARPLANMONEY,
@@ -57,7 +57,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
               '-',
               REGEXP_REPLACE(ROUND((MB.LJTZ / MB.NDJH) * 100, 2),
                              '^\.',
-                             '0.')) COMPLETEPERCENT, --�����
+                             '0.')) COMPLETEPERCENT, --已完成
        DECODE(MB.SQ,
               0,
               '-',
@@ -65,22 +65,22 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
               '-',
               REGEXP_REPLACE(ROUND(((MB.LJTZ - SQ) / SQ ) * 100, 2),
                              '^\.',
-                             '0.')) CHAINNUMBER, --ͬ��
+                             '0.')) CHAINNUMBER, --同比
        NVL(ZBJ, 0) CAPITALMONEY,
        NVL(CBJ, 0) COSTMONEY
-  FROM --�ѹ�˾�����ֲ�����
+  FROM --把公司的名字并进来
        (SELECT ORGAN_CODE,
                DECODE(ORGAN_NAME,
-                      '�����������޹�˾',
-                      '�����ֲ�',
-                      '�����������޹�˾',
-                      '�����ֲ�',
-                      '���е������޹�˾',
-                      '���зֲ�',
-                      '�������޹�˾����',
-                      '�����ֲ�',
-                      '�����������޹�˾',
-                      '�����ֲ�',
+                      '华北电网有限公司',
+                      '华北分部',
+                      '华东电网有限公司',
+                      '华东分部',
+                      '华中电网有限公司',
+                      '华中分部',
+                      '东北有限公司电网',
+                      '东北分部',
+                      '西北电网有限公司',
+                      '西北分部',
                       ORGAN_NAME) AS ORGAN_NAME,
                ORG_NO,
               SORT_ORDER,
@@ -90,7 +90,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
                   FROM V_STRU S
                  WHERE (S.ORGAN_TYPE = '1' OR S.ORGAN_TYPE = '13')
                    AND S.F_ORGAN_CODE = '100000') ORGS
-        --����������������
+        --并入分组和排序名称
           LEFT JOIN (SELECT S.ORG_NO, S.SORT_ORDER, S.ORG_ORDER, S.POINT_CODE
                       FROM PM_IMR_ORG_SORTS S WHERE S.VERSIONS = 1) SOS
             ON ORGS.ORGAN_CODE = SOS.ORG_NO
@@ -102,10 +102,10 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
                         0 AS ORG_ORDER,
                         DECODE(T.SORT_ORDER,20,2,30,3,40,4,50,5,60,6,65,7,70,8,NULL) POINT_CODE
           FROM PM_IMR_ORG_SORTS T
-        --���뼸���ϼ�ֵ������
+        --并入几个合计值的名称
         UNION ALL
         SELECT '1' AS ORG_CODE,
-               '��˾�ϼ�' AS ORGAN_NAME,
+               '公司合计' AS ORGAN_NAME,
                '1' AS ORG_NO,
                0 AS SORT_ORDER,
                0 AS ORG_ORDER,
@@ -113,7 +113,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
           FROM DUAL
         UNION ALL
         SELECT '5' AS ORG_CODE,
-               '��˾�ϼ�' AS ORGAN_NAME,
+               '公司合计' AS ORGAN_NAME,
                '5' AS ORG_NO,
                5 AS SORT_ORDER,
                0 AS ORG_ORDER,
@@ -121,7 +121,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
           FROM DUAL
         UNION ALL
         SELECT '8' AS ORG_CODE,
-               'ֱ����λ�ϼ�' AS ORGAN_NAME,
+               '直属单位合计' AS ORGAN_NAME,
                '8' AS ORG_NO,
                65 AS SORT_ORDER,
                0 AS ORG_ORDER,
@@ -156,7 +156,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
             TO_NUMBER(T.ORG_NO)
          END) AS ORG_NO
     FROM (
-          --�����             
+          --上年度             
           SELECT O.ORG_NO,
                   0               YEARPLAN,
                   P.TOTAL_FUND * P.PROCESS / 100 MONTHPLAN,
@@ -166,12 +166,12 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
             FROM PM_IMR_ORG O
             LEFT JOIN PM_IMR_PROJECT P
               ON O.MON_ORG_ID = P.MON_ORG_ID
-           WHERE O.RPT_YEAR = (SELECT LASTYEAR FROM LASTYEARS) --����Ϊ����
+           WHERE O.RPT_YEAR = (SELECT LASTYEAR FROM LASTYEARS) --设置为上年
              AND O.RPT_STATE IN (2, 3, 4, 5)
              AND O.RPT_MONTH = (SELECT THISMONTH FROM THISMONTHS)
           UNION ALL
-          --ȡ��ȼƻ�ֵר���У�����ȼƻ�����ֱ��ȡ����
-          --2012.5.10��������������ϱ�����ȼƻ�ֵΪ�գ���ô����ȼƻ�����ȡֵ��������ԭ�еķ�ʽȡֵ
+          --取年度计划值专用列（从年度计划表中直接取出）
+          --2012.5.10修正了如果本月上报的年度计划值为空，那么从年度计划表中取值，否则按照原有的方式取值
           SELECT DISTINCT Y.ORG_NO ORG_NO,
                           DECODE(THISYP.YEARPLAN,NULL,Y.YP,THISYP.YEARPLAN)  YEARPLAN,
                           0        MONTHPLAN,
@@ -180,7 +180,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
                           1        AS TIMETAG
             FROM  YEARPLAN Y LEFT JOIN (SELECT O.ORG_NO, SUM(P.TOTAL_FUND) AS YEARPLAN FROM PM_IMR_PROJECT P LEFT JOIN PM_IMR_ORG O ON P.MON_ORG_ID=O.MON_ORG_ID WHERE P.RPT_YEAR = (SELECT THISYEAR FROM THISYEARS) AND P.RPT_MONTH = (SELECT THISMONTH FROM THISMONTHS) GROUP BY O.Org_No) THISYP ON THISYP.ORG_NO = Y.ORG_NO
           UNION ALL
-          --�����
+          --本年度
           SELECT O.ORG_NO,
                  0                 YEARPLAN,
                  P.TOTAL_FUND * P.PROCESS / 100   MONTHPLAN,
@@ -190,9 +190,9 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
             FROM PM_IMR_ORG O
             LEFT JOIN PM_IMR_PROJECT P
               ON O.MON_ORG_ID = P.MON_ORG_ID
-           WHERE O.RPT_YEAR = (SELECT THISYEAR FROM THISYEARS) --����Ϊ��ǰ��5
+           WHERE O.RPT_YEAR = (SELECT THISYEAR FROM THISYEARS) --设置为当前年5
              AND O.RPT_STATE IN (2, 3, 4, 5)
-             AND O.RPT_MONTH = (SELECT THISMONTH FROM THISMONTHS)) T --����Ϊ��ǰ��
+             AND O.RPT_MONTH = (SELECT THISMONTH FROM THISMONTHS)) T --设置为当前年
     LEFT JOIN PM_IMR_ORG_SORTS SO
       ON SO.ORG_NO = T.ORG_NO
    GROUP BY ROLLUP(DECODE(SO.SORT_ORDER, 70, 0, 1), SO.SORT_ORDER, T.ORG_NO)) MB

@@ -1,18 +1,18 @@
--- ºÏ²¢Ê±ÐèÒªµÄÖµ--
--- 1¡¢ÒªºÏ²¢µÄÄê·Ý: PLAN_YEAR               
--- 2¡¢ÒªºÏ²¢µ½ÄÄ¸öÁ÷³Ì£¬APP_NO              
+-- åˆå¹¶æ—¶éœ€è¦çš„å€¼--
+-- 1ã€è¦åˆå¹¶çš„å¹´ä»½: PLAN_YEAR               
+-- 2ã€è¦åˆå¹¶åˆ°å“ªä¸ªæµç¨‹ï¼ŒAPP_NO              
 
------------¾ßÌå²Ù×÷¹ý³Ì--------------------------------------
----------------------------ÒÔ2014ÄêºÏ²¢²âÊÔ
--- Ò»¡¢ ²é¿´ÓÐÄÇÐ©µ¥Î»Òª·¢ÆðÐÂµÄÁ÷³Ì
+-----------å…·ä½“æ“ä½œè¿‡ç¨‹--------------------------------------
+---------------------------ä»¥2014å¹´åˆå¹¶æµ‹è¯•
+-- ä¸€ã€ æŸ¥çœ‹æœ‰é‚£äº›å•ä½è¦å‘èµ·æ–°çš„æµç¨‹
 SELECT DISTINCT OLDRPT.ORG_NO, OLDRPT.ORG_NAME, OLDCRT.PLAN_YEAR 
 FROM PM_ALP_CREATE OLDCRT, PM_ALP_RPT OLDRPT
 WHERE OLDCRT.PLAN_YEAR='2014' AND OLDRPT.APP_NO = OLDCRT.APP_NO 
 
--- ¶þ¡¢´´½¨ÐÂÁ÷³Ì£¬²¢½«Á÷³ÌÅÜÍê£¬²¢ËùÓÐµÄµ¥Î»ÉóºËÍ¨¹ý£¨²âÊÔÊ±APP_NO = 120410115161 £©
+-- äºŒã€åˆ›å»ºæ–°æµç¨‹ï¼Œå¹¶å°†æµç¨‹è·‘å®Œï¼Œå¹¶æ‰€æœ‰çš„å•ä½å®¡æ ¸é€šè¿‡ï¼ˆæµ‹è¯•æ—¶APP_NO = 120410115161 ï¼‰
 
--- Èý¡¢ºÏ²¢Êý¾Ý
--- 3.1  ¹¹Ôì±í£¨Ô­ÉÏ±¨ID£¬Òª¸üÐÂ³ÉµÄÉÏ±¨ID£¬ µ¥Î»±àºÅ£©
+-- ä¸‰ã€åˆå¹¶æ•°æ®
+-- 3.1  æž„é€ è¡¨ï¼ˆåŽŸä¸ŠæŠ¥IDï¼Œè¦æ›´æ–°æˆçš„ä¸ŠæŠ¥IDï¼Œ å•ä½ç¼–å·ï¼‰
 SELECT OLDRPT.RPT_ID ORPTID, NEWRPT.RPT_ID NRPTID, NEWRPT.ORG_NO 
 FROM PM_ALP_RPT OLDRPT ,PM_ALP_CREATE OLDCRT ,PM_ALP_RPT NEWRPT
 WHERE OLDRPT.ORG_NO = NEWRPT.ORG_NO 
@@ -21,8 +21,8 @@ AND OLDCRT.PLAN_YEAR='2014'
 AND NEWRPT.APP_NO ='120410115161'
 AND OLDRPT.APP_NO !='120410115161'
 
--- 3.2 ½« PM_ALP_VHT£¨Äê¶È¼Æ»®°æ±¾±í£©ÖÐÔ­À´µÄRPT_ID ¸üÐÂÎªÐÂµÄ
-/* --  ²éÑ¯ÄÇÐ©Êý¾ÝÔÚ¸üÐÂ
+-- 3.2 å°† PM_ALP_VHTï¼ˆå¹´åº¦è®¡åˆ’ç‰ˆæœ¬è¡¨ï¼‰ä¸­åŽŸæ¥çš„RPT_ID æ›´æ–°ä¸ºæ–°çš„
+/* --  æŸ¥è¯¢é‚£äº›æ•°æ®åœ¨æ›´æ–°
 SELECT * FROM PM_ALP_VHT VHT, PM_ALP_CREATE CRT 
 WHERE VHT.APP_NO = CRT.APP_NO AND CRT.PLAN_YEAR ='2014'
 AND CRT.APP_NO !='120410115161'
@@ -51,13 +51,13 @@ AND NEWRPT.ORG_NO = VHT.ORG_NO)
 AND VHT.APP_NO != '120410115161'
 
 
--- 3.3 ¸üÐÂPM_ALP_DHT£¨°æ±¾Ã÷Ï¸±í£©
+-- 3.3 æ›´æ–°PM_ALP_DHTï¼ˆç‰ˆæœ¬æ˜Žç»†è¡¨ï¼‰
 UPDATE PM_ALP_DHT DHT SET DHT.RPT_ID = (SELECT VHT.RPT_ID FROM PM_ALP_VHT VHT WHERE VHT.VER_ID = DHT.VER_ID)
 
 
 
--- 3.4 ¸üÐÂPM_ALP_RPT_DETAIL(¼Æ»®±àÖÆÃ÷Ï¸)
-/* --²é¿´Òª¸üÐÂµÄÊý¾Ý
+-- 3.4 æ›´æ–°PM_ALP_RPT_DETAIL(è®¡åˆ’ç¼–åˆ¶æ˜Žç»†)
+/* --æŸ¥çœ‹è¦æ›´æ–°çš„æ•°æ®
 SELECT DET.* FROM PM_ALP_CREATE CRT , PM_ALP_RPT RPT, PM_ALP_RPT_DETAIL DET
 WHERE CRT.PLAN_YEAR ='2014' AND RPT.APP_NO = CRT.APP_NO AND DET.RPT_ID = RPT.RPT_ID
 AND CRT.APP_NO != '120410115161'
@@ -86,8 +86,8 @@ AND DET.RPT_ID = OLDRPT.RPT_ID
 
 
 ---------------------------------------------------------
--- ËÄ¡¢É¾³ý¶àÓàÊý¾Ý
--- 4.1 É¾³ýPM_ALP_RPT£¨Äê¶È¼Æ»®±àÖÆ£©
+-- å››ã€åˆ é™¤å¤šä½™æ•°æ®
+-- 4.1 åˆ é™¤PM_ALP_RPTï¼ˆå¹´åº¦è®¡åˆ’ç¼–åˆ¶ï¼‰
 DELETE FROM PM_ALP_RPT RPT 
 WHERE EXISTS (
 SELECT 1
@@ -100,13 +100,13 @@ AND OLDRPT.APP_NO !='120410115161'
 AND RPT.RPT_ID = OLDRPT.RPT_ID
 )
 
--- 4.2 É¾³ýPM_ALP_CREATE£¨Äê¶È¼Æ»®·¢Æð£©
+-- 4.2 åˆ é™¤PM_ALP_CREATEï¼ˆå¹´åº¦è®¡åˆ’å‘èµ·ï¼‰
 DELETE FROM PM_ALP_CREATE CRT 
 WHERE CRT.APP_NO !=  '120410115161' AND crt.plan_year ='2014'
 
 
--- µµ°¸±í
+-- æ¡£æ¡ˆè¡¨
 UPDATE PM_DOC  DC SET DC.APP_NO ='NEWAPPNO' WHERE DC.APP_NO ='OLDDAPPNO' 
 
--- ÉóºËÐÅÏ¢
+-- å®¡æ ¸ä¿¡æ¯
 UPDATE P_APPROVE AP SET AP.APP_NO ='NEWAPPNO' WHERE AP.APP_NO ='OLDDAPPNO'

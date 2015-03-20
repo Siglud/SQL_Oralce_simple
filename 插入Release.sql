@@ -13,7 +13,7 @@ INSERT INTO PM_ALP_RELEASE
          '2012' AS RPT_YEAR,
          I.RPT_ID,
          '1.1' AS VER_NO,
-         '²âÊÔ' AS VeR_EXP,
+         'æµ‹è¯•' AS VeR_EXP,
          SYSDATE AS CREATE_DATE,
          I.RPT_EMP_NO,
          I.RPT_TIME,

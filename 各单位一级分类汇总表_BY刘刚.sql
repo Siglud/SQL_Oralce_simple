@@ -1,12 +1,12 @@
 SELECT (CASE
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 1 THEN
-          'π˙Õ¯'
+          'ÂõΩÁΩë'
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 2 THEN
-          'Õ¯ °∫œº∆'
+          'ÁΩëÁúÅÂêàËÆ°'
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 3 THEN
-          '÷± Ùµ•Œª∫œº∆'
+          'Áõ¥Â±ûÂçï‰ΩçÂêàËÆ°'
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 0 THEN
-          '∫œº∆'
+          'ÂêàËÆ°'
          ELSE
           PS.UNITS
        END) UNITS,
@@ -43,12 +43,12 @@ SELECT (CASE
                                        NVL(T.FUND_FOUR, 0) +
                                        NVL(T.FUND_FIVE, 0)) AS PRJFUND
                               FROM PM_PLAN_HS T
-                             WHERE T.PRJ_TYPE IN ('–≈œ¢Õ¯¬Á',
-                                                  ' ˝æ›Ωªªª',
-                                                  ' ˝æ›÷––ƒ',
-                                                  '”¶”√ºØ≥…',
-                                                  '∆Û“µ√≈ªß',
-                                                  'ª˙∑øº∞ª˘¥°…Ë ©')
+                             WHERE T.PRJ_TYPE IN ('‰ø°ÊÅØÁΩëÁªú',
+                                                  'Êï∞ÊçÆ‰∫§Êç¢',
+                                                  'Êï∞ÊçÆ‰∏≠ÂøÉ',
+                                                  'Â∫îÁî®ÈõÜÊàê',
+                                                  '‰ºÅ‰∏öÈó®Êà∑',
+                                                  'Êú∫ÊàøÂèäÂü∫Á°ÄËÆæÊñΩ')
                              GROUP BY T.ORG_CODE), T2 AS (SELECT T.ORG_CODE,
                                                                  COUNT(*) AS PRJSUM,
                                                                  SUM(NVL(T.FUND_FIRST,
@@ -63,15 +63,15 @@ SELECT (CASE
                                                                          0)) AS PRJFUND
                                                             FROM PM_PLAN_HS T
                                                            WHERE T.PRJ_TYPE IN
-                                                                 ('≥… ÏÃ◊◊∞»Ìº˛',
-                                                                  '≤∆ŒÒ£®◊ Ω£©π‹¿Ì',
-                                                                  '”™œ˙π‹¿Ì',
-                                                                  '∞≤»´…˙≤˙π‹¿Ì',
-                                                                  '–≠Õ¨∞Ïπ´',
-                                                                  '»À¡¶◊ ‘¥π‹¿Ì',
-                                                                  'ŒÔ◊ π‹¿Ì',
-                                                                  'œÓƒøπ‹¿Ì',
-                                                                  '◊€∫œπ‹¿Ì')
+                                                                 ('ÊàêÁÜüÂ•óË£ÖËΩØ‰ª∂',
+                                                                  'Ë¥¢Âä°ÔºàËµÑÈáëÔºâÁÆ°ÁêÜ',
+                                                                  'Ëê•ÈîÄÁÆ°ÁêÜ',
+                                                                  'ÂÆâÂÖ®Áîü‰∫ßÁÆ°ÁêÜ',
+                                                                  'ÂçèÂêåÂäûÂÖ¨',
+                                                                  '‰∫∫ÂäõËµÑÊ∫êÁÆ°ÁêÜ',
+                                                                  'Áâ©ËµÑÁÆ°ÁêÜ',
+                                                                  'È°πÁõÆÁÆ°ÁêÜ',
+                                                                  'ÁªºÂêàÁÆ°ÁêÜ')
                                                            GROUP BY T.ORG_CODE), T3 AS (SELECT T.ORG_CODE,
                                                                                                COUNT(*) AS PRJSUM,
                                                                                                SUM(NVL(T.FUND_FIRST,
@@ -86,12 +86,12 @@ SELECT (CASE
                                                                                                        0)) AS PRJFUND
                                                                                           FROM PM_PLAN_HS T
                                                                                          WHERE T.PRJ_TYPE IN
-                                                                                               ('∞≤»´∑¿ª§ÃÂœµ',
-                                                                                                '±Í◊ºπÊ∑∂ÃÂœµ',
-                                                                                                'π‹¿Ìµ˜øÿÃÂœµΩ®…Ë',
-                                                                                                '∆¿º€øº∫ÀÃÂœµ',
-                                                                                                'ºº ı—–æøÃÂœµ',
-                                                                                                '»À≤≈∂”ŒÈÃÂœµ')
+                                                                                               ('ÂÆâÂÖ®Èò≤Êä§‰ΩìÁ≥ª',
+                                                                                                'Ê†áÂáÜËßÑËåÉ‰ΩìÁ≥ª',
+                                                                                                'ÁÆ°ÁêÜË∞ÉÊéß‰ΩìÁ≥ªÂª∫ËÆæ',
+                                                                                                'ËØÑ‰ª∑ËÄÉÊ†∏‰ΩìÁ≥ª',
+                                                                                                'ÊäÄÊúØÁ†îÁ©∂‰ΩìÁ≥ª',
+                                                                                                '‰∫∫ÊâçÈòü‰ºç‰ΩìÁ≥ª')
                                                                                          GROUP BY T.ORG_CODE), T4 AS (SELECT T.ORG_CODE,
                                                                                                                              COUNT(*) AS PRJSUM,
                                                                                                                              SUM(NVL(T.FUND_FIRST,
@@ -106,9 +106,9 @@ SELECT (CASE
                                                                                                                                      0)) AS PRJFUND
                                                                                                                         FROM PM_PLAN_HS T
                                                                                                                        WHERE T.PRJ_TYPE IN
-                                                                                                                             ('»Ìº˛’˝∞ÊªØ',
-                                                                                                                              '± º«±æ°¢PCª˙°¢¥Ú”°ª˙π∫÷√',
-                                                                                                                              '∆‰À˚')
+                                                                                                                             ('ËΩØ‰ª∂Ê≠£ÁâàÂåñ',
+                                                                                                                              'Á¨îËÆ∞Êú¨„ÄÅPCÊú∫„ÄÅÊâìÂç∞Êú∫Ë¥≠ÁΩÆ',
+                                                                                                                              'ÂÖ∂‰ªñ')
                                                                                                                        GROUP BY T.ORG_CODE)
                  SELECT DISTINCT T.ORG_NAME AS UNITS,
                                  T.ORG_CODE,

@@ -1,12 +1,12 @@
 SELECT (CASE
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.SORTTYPE = 1 THEN
-          '国网'
+          '鍥界綉'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.SORTTYPE = 2 THEN
-          '网省合计'
+          '缃戠渷鍚堣'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.SORTTYPE = 3 THEN
-          '直属单位合计'
+          '鐩村睘鍗曚綅鍚堣'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.SORTTYPE = 0 THEN
-          '合计'
+          '鍚堣'
          ELSE
           OS.HS_SHORT_NAME
        END) ORG_NAME,

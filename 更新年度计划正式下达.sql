@@ -24,7 +24,7 @@ INSERT INTO PM_ALP_RELEASE
                        FROM PM_ALP_CREATE C
                       WHERE C.PLAN_YEAR = '2012')
      AND I.STATUS_CODE = '04'
-     --变更
+     --鍙樻洿
      AND I.ORG_NO IN (100100);
      
      
@@ -65,11 +65,11 @@ INSERT INTO PM_ALP_DHT
                               WHERE C.PLAN_YEAR = '2012')
              AND R.RPT_ID = D.RPT_ID
              AND R.STATUS_CODE = '04'
-             --变更
+             --鍙樻洿
              AND R.ORG_NO IN (100100))
      AND R.VER_NO = '1'
      AND R.RPT_YEAR = '2012'
-     --变更
+     --鍙樻洿
      AND R.ORG_NO IN (100100);
      
      
@@ -112,7 +112,7 @@ INSERT INTO PM_ALP_FHT
            WHERE R.VER_ID = D.VER_ID
              AND R.RPT_YEAR = '2012'
              AND R.VER_NO = '1'
-             --变更
+             --鍙樻洿
              AND R.ORG_NO IN (100100)),
    (SELECT SYS_GUID() AS GID FROM DUAL) X
    WHERE EXISTS (SELECT NULL
@@ -126,7 +126,7 @@ INSERT INTO PM_ALP_FHT
                            WHERE C.PLAN_YEAR = '2012')
                      AND R.RPT_ID = D.RPT_ID
                      AND R.STATUS_CODE = '04'
-                     --变更
+                     --鍙樻洿
                      AND R.ORG_NO IN (100100)));
                      
                      

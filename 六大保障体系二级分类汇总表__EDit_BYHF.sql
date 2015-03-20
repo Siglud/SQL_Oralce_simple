@@ -1,12 +1,12 @@
 SELECT (CASE
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 1 THEN
-          '����'
+          '国网'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 2 THEN
-          '��ʡ�ϼ�'
+          '网省合计'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 3 THEN
-          'ֱ����λ�ϼ�'
+          '直属单位合计'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 0 THEN
-          '�ϼ�'
+          '合计'
          ELSE
           OS.HS_SHORT_NAME
        END) ORG_NAME,
@@ -32,13 +32,13 @@ SELECT (CASE
                END) ORG_CODE,
                NVL(ORGTYPE, 0) ORGTYPE,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE = '��ȫ������ϵ' THEN
+                     WHEN HS.PRJ_TYPE = '安全防护体系' THEN
                       1
                      ELSE
                       0
                    END)) SORT1,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('��ȫ������ϵ') THEN
+                     WHEN HS.PRJ_TYPE IN ('安全防护体系') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -46,13 +46,13 @@ SELECT (CASE
                       0
                    END)) TZESORT1,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('��׼�淶��ϵ') THEN
+                     WHEN HS.PRJ_TYPE IN ('标准规范体系') THEN
                       1
                      ELSE
                       0
                    END)) SORT2,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('��׼�淶��ϵ') THEN
+                     WHEN HS.PRJ_TYPE IN ('标准规范体系') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -60,13 +60,13 @@ SELECT (CASE
                       0
                    END)) TZESORT2,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('����������ϵ����') THEN
+                     WHEN HS.PRJ_TYPE IN ('管理调控体系建设') THEN
                       1
                      ELSE
                       0
                    END)) SORT3,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('����������ϵ����') THEN
+                     WHEN HS.PRJ_TYPE IN ('管理调控体系建设') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -75,7 +75,7 @@ SELECT (CASE
                    END)) TZESORT3,
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('���ۿ�����ϵ') THEN
+                          ('评价考核体系') THEN
                       1
                      ELSE
                       0
@@ -83,7 +83,7 @@ SELECT (CASE
                
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('���ۿ�����ϵ') THEN
+                          ('评价考核体系') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -93,7 +93,7 @@ SELECT (CASE
                    
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('�����о���ϵ') THEN
+                          ('技术研究体系') THEN
                       1
                      ELSE
                       0
@@ -101,7 +101,7 @@ SELECT (CASE
                
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('�����о���ϵ') THEN
+                          ('技术研究体系') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -111,7 +111,7 @@ SELECT (CASE
                    
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('�˲Ŷ�����ϵ') THEN
+                          ('人才队伍体系') THEN
                       1
                      ELSE
                       0
@@ -119,7 +119,7 @@ SELECT (CASE
                
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('�˲Ŷ�����ϵ') THEN
+                          ('人才队伍体系') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -136,7 +136,7 @@ SELECT (CASE
                          ELSE
                           2
                        END) ORGTYPE
-                  FROM PM_PLAN_HS H WHERE H.PRJ_TYPE IN ('��ȫ������ϵ','��׼�淶��ϵ','����������ϵ����','���ۿ�����ϵ','�����о���ϵ','�˲Ŷ�����ϵ')) HS
+                  FROM PM_PLAN_HS H WHERE H.PRJ_TYPE IN ('安全防护体系','标准规范体系','管理调控体系建设','评价考核体系','技术研究体系','人才队伍体系')) HS
          GROUP BY ROLLUP(HS.ORGTYPE, HS.ORG_CODE)) RS
   LEFT JOIN PM_PLAN_HS_ORG OS
     ON RS.ORG_CODE = OS.ORG_CODE

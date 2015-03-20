@@ -1,4 +1,4 @@
---��ȼƻ��汾��ѯ��SQL BY HF 20110612
+--年度计划版本查询主SQL BY HF 20110612
 SELECT ORGS.ORGAN_CODE,
        ORGS.ORGAN_NAME,
        NVL(RESS.FIRPRJFUND, 0),
@@ -11,7 +11,7 @@ SELECT ORGS.ORGAN_CODE,
        NVL(RESS.THRPRJNUM, 0),
        RESS.CT3
   FROM (SELECT S.ORGAN_CODE,
-               DECODE(S.SHORT_NAME, '����', '������', S.SHORT_NAME) AS ORGAN_NAME,
+               DECODE(S.SHORT_NAME, '龙江', '黑龙江', S.SHORT_NAME) AS ORGAN_NAME,
                S.STRU_ORDER,
                (CASE
                  WHEN S.ORGAN_CODE = 100100 THEN
@@ -28,19 +28,19 @@ SELECT ORGS.ORGAN_CODE,
            AND S.F_ORGAN_CODE = '100000'
         UNION ALL
         SELECT '0' ORGAN_CODE,
-               '��˾�ϼ�' ORGAN_NAME,
+               '公司合计' ORGAN_NAME,
                0 STRU_ORDER,
                0 ORG_TYPE
           FROM DUAL
         UNION ALL
         SELECT '2' ORGAN_CODE,
-               'ʡ�кϼ�' ORGAN_NAME,
+               '省市合计' ORGAN_NAME,
                99 STRU_ORDER,
                2 ORG_TYPE
           FROM DUAL
         UNION ALL
         SELECT '3' ORGAN_CODE,
-               'ֱ����λ�ϼ�' ORGAN_NAME,
+               '直属单位合计' ORGAN_NAME,
                0 STRU_ORDER,
                3 ORG_TYPE
           FROM DUAL) ORGS

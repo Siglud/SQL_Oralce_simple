@@ -1,4 +1,4 @@
---投资月报中取出年度计划数据的SQL
+--鎶曡祫鏈堟姤涓彇鍑哄勾搴﹁鍒掓暟鎹殑SQL
 SELECT AA.*, PAC.APP_NO
   FROM (SELECT BB.BUNCH_NO,
                BB.BUNCH_NAME,

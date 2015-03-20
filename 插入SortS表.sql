@@ -40,10 +40,10 @@ INSERT INTO PM_IMR_ORG_SORTS
          END) SORT_ORDER,
          (CASE
            WHEN S.organ_code = 100100 THEN
-            '公司总部'
+            '鍏徃鎬婚儴'
            WHEN S.organ_code IN
                 ('110000', '120000', '130000', '370000', '140000', '100300') THEN
-            '华北电网'
+            '鍗庡寳鐢电綉'
            WHEN S.organ_code IN ('100500',
                                  '420000',
                                  '430000',
@@ -52,13 +52,13 @@ INSERT INTO PM_IMR_ORG_SORTS
                                  '510000',
                                  '500000',
                                  '360000') THEN
-            '华中电网'
+            '鍗庝腑鐢电綉'
            WHEN S.organ_code IN
                 ('100400', '310000', '330000', '320000', '340000', '350000') THEN
-            '华东电网'
+            '鍗庝笢鐢电綉'
            WHEN S.organ_code IN
                 ('100600', '210000', '220000', '230000', '150000') THEN
-            '东北电网'
+            '涓滃寳鐢电綉'
            WHEN S.organ_code IN ('100700',
                                  '610000',
                                  '620000',
@@ -66,11 +66,11 @@ INSERT INTO PM_IMR_ORG_SORTS
                                  '650000',
                                  '630000',
                                  '540000') THEN
-            '西北电网'
+            '瑗垮寳鐢电綉'
          /*WHEN S.organ_code = 540000 THEN
-         '西藏电力公司'*/
+         '瑗胯棌鐢靛姏鍏徃'*/
            WHEN S.organ_code > 100700 AND S.organ_code < 104000 THEN
-            '直属单位'
+            '鐩村睘鍗曚綅'
            ELSE
             '0'
          END) SORT_NAME,

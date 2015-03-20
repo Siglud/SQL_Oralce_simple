@@ -1,12 +1,12 @@
 SELECT (CASE
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 1 THEN
-          '¹úÍø'
+          'å›½ç½‘'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 2 THEN
-          'ÍøÊ¡ºÏ¼Æ'
+          'ç½‘çœåˆè®¡'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 3 THEN
-          'Ö±Êôµ¥Î»ºÏ¼Æ'
+          'ç›´å±žå•ä½åˆè®¡'
          WHEN OS.HS_SHORT_NAME IS NULL AND RS.ORGTYPE = 0 THEN
-          'ºÏ¼Æ'
+          'åˆè®¡'
          ELSE
           OS.HS_SHORT_NAME
        END) ORG_NAME,
@@ -28,23 +28,23 @@ SELECT (CASE
                END) ORG_CODE,
                NVL(ORGTYPE, 0) ORGTYPE,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('ÐÅÏ¢ÍøÂç',
-                                          'Êý¾Ý½»»»',
-                                          'Êý¾ÝÖÐÐÄ',
-                                          'Ó¦ÓÃ¼¯³É',
-                                          'ÆóÒµÃÅ»§',
-                                          '»ú·¿¼°»ù´¡ÉèÊ©') THEN
+                     WHEN HS.PRJ_TYPE IN ('ä¿¡æ¯ç½‘ç»œ',
+                                          'æ•°æ®äº¤æ¢',
+                                          'æ•°æ®ä¸­å¿ƒ',
+                                          'åº”ç”¨é›†æˆ',
+                                          'ä¼ä¸šé—¨æˆ·',
+                                          'æœºæˆ¿åŠåŸºç¡€è®¾æ–½') THEN
                       1
                      ELSE
                       0
                    END)) SORT1,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('ÐÅÏ¢ÍøÂç',
-                                          'Êý¾Ý½»»»',
-                                          'Êý¾ÝÖÐÐÄ',
-                                          'Ó¦ÓÃ¼¯³É',
-                                          'ÆóÒµÃÅ»§',
-                                          '»ú·¿¼°»ù´¡ÉèÊ©') THEN
+                     WHEN HS.PRJ_TYPE IN ('ä¿¡æ¯ç½‘ç»œ',
+                                          'æ•°æ®äº¤æ¢',
+                                          'æ•°æ®ä¸­å¿ƒ',
+                                          'åº”ç”¨é›†æˆ',
+                                          'ä¼ä¸šé—¨æˆ·',
+                                          'æœºæˆ¿åŠåŸºç¡€è®¾æ–½') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -52,29 +52,29 @@ SELECT (CASE
                       0
                    END)) TZESORT1,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('³ÉÊìÌ××°Èí¼þ',
-                                          '²ÆÎñ£¨×Ê½ð£©¹ÜÀí',
-                                          'ÓªÏú¹ÜÀí',
-                                          '°²È«Éú²ú¹ÜÀí',
-                                          'Ð­Í¬°ì¹«',
-                                          'ÈËÁ¦×ÊÔ´¹ÜÀí',
-                                          'Îï×Ê¹ÜÀí',
-                                          'ÏîÄ¿¹ÜÀí',
-                                          '×ÛºÏ¹ÜÀí') THEN
+                     WHEN HS.PRJ_TYPE IN ('æˆç†Ÿå¥—è£…è½¯ä»¶',
+                                          'è´¢åŠ¡ï¼ˆèµ„é‡‘ï¼‰ç®¡ç†',
+                                          'è¥é”€ç®¡ç†',
+                                          'å®‰å…¨ç”Ÿäº§ç®¡ç†',
+                                          'ååŒåŠžå…¬',
+                                          'äººåŠ›èµ„æºç®¡ç†',
+                                          'ç‰©èµ„ç®¡ç†',
+                                          'é¡¹ç›®ç®¡ç†',
+                                          'ç»¼åˆç®¡ç†') THEN
                       1
                      ELSE
                       0
                    END)) SORT2,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('³ÉÊìÌ××°Èí¼þ',
-                                          '²ÆÎñ£¨×Ê½ð£©¹ÜÀí',
-                                          'ÓªÏú¹ÜÀí',
-                                          '°²È«Éú²ú¹ÜÀí',
-                                          'Ð­Í¬°ì¹«',
-                                          'ÈËÁ¦×ÊÔ´¹ÜÀí',
-                                          'Îï×Ê¹ÜÀí',
-                                          'ÏîÄ¿¹ÜÀí',
-                                          '×ÛºÏ¹ÜÀí') THEN
+                     WHEN HS.PRJ_TYPE IN ('æˆç†Ÿå¥—è£…è½¯ä»¶',
+                                          'è´¢åŠ¡ï¼ˆèµ„é‡‘ï¼‰ç®¡ç†',
+                                          'è¥é”€ç®¡ç†',
+                                          'å®‰å…¨ç”Ÿäº§ç®¡ç†',
+                                          'ååŒåŠžå…¬',
+                                          'äººåŠ›èµ„æºç®¡ç†',
+                                          'ç‰©èµ„ç®¡ç†',
+                                          'é¡¹ç›®ç®¡ç†',
+                                          'ç»¼åˆç®¡ç†') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -82,23 +82,23 @@ SELECT (CASE
                       0
                    END)) TZESORT2,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('°²È«·À»¤ÌåÏµ',
-                                          '±ê×¼¹æ·¶ÌåÏµ',
-                                          '¹ÜÀíµ÷¿ØÌåÏµ½¨Éè',
-                                          'ÆÀ¼Û¿¼ºËÌåÏµ',
-                                          '¼¼ÊõÑÐ¾¿ÌåÏµ',
-                                          'ÈË²Å¶ÓÎéÌåÏµ') THEN
+                     WHEN HS.PRJ_TYPE IN ('å®‰å…¨é˜²æŠ¤ä½“ç³»',
+                                          'æ ‡å‡†è§„èŒƒä½“ç³»',
+                                          'ç®¡ç†è°ƒæŽ§ä½“ç³»å»ºè®¾',
+                                          'è¯„ä»·è€ƒæ ¸ä½“ç³»',
+                                          'æŠ€æœ¯ç ”ç©¶ä½“ç³»',
+                                          'äººæ‰é˜Ÿä¼ä½“ç³»') THEN
                       1
                      ELSE
                       0
                    END)) SORT3,
                SUM((CASE
-                     WHEN HS.PRJ_TYPE IN ('°²È«·À»¤ÌåÏµ',
-                                          '±ê×¼¹æ·¶ÌåÏµ',
-                                          '¹ÜÀíµ÷¿ØÌåÏµ½¨Éè',
-                                          'ÆÀ¼Û¿¼ºËÌåÏµ',
-                                          '¼¼ÊõÑÐ¾¿ÌåÏµ',
-                                          'ÈË²Å¶ÓÎéÌåÏµ') THEN
+                     WHEN HS.PRJ_TYPE IN ('å®‰å…¨é˜²æŠ¤ä½“ç³»',
+                                          'æ ‡å‡†è§„èŒƒä½“ç³»',
+                                          'ç®¡ç†è°ƒæŽ§ä½“ç³»å»ºè®¾',
+                                          'è¯„ä»·è€ƒæ ¸ä½“ç³»',
+                                          'æŠ€æœ¯ç ”ç©¶ä½“ç³»',
+                                          'äººæ‰é˜Ÿä¼ä½“ç³»') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)
@@ -107,7 +107,7 @@ SELECT (CASE
                    END)) TZESORT3,
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('Èí¼þÕý°æ»¯', '±Ê¼Ç±¾¡¢PC»ú¡¢´òÓ¡»ú¹ºÖÃ', 'ÆäËû') THEN
+                          ('è½¯ä»¶æ­£ç‰ˆåŒ–', 'ç¬”è®°æœ¬ã€PCæœºã€æ‰“å°æœºè´­ç½®', 'å…¶ä»–') THEN
                       1
                      ELSE
                       0
@@ -115,7 +115,7 @@ SELECT (CASE
                
                SUM((CASE
                      WHEN HS.PRJ_TYPE IN
-                          ('Èí¼þÕý°æ»¯', '±Ê¼Ç±¾¡¢PC»ú¡¢´òÓ¡»ú¹ºÖÃ', 'ÆäËû') THEN
+                          ('è½¯ä»¶æ­£ç‰ˆåŒ–', 'ç¬”è®°æœ¬ã€PCæœºã€æ‰“å°æœºè´­ç½®', 'å…¶ä»–') THEN
                       NVL(HS.FUND_FIRST, 0) + NVL(HS.FUND_SECOND, 0) +
                       NVL(HS.FUND_THREE, 0) + NVL(HS.FUND_FOUR, 0) +
                       NVL(HS.FUND_FIVE, 0)

@@ -1,12 +1,12 @@
 SELECT (CASE
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 1 THEN
-          'π˙Õ¯'
+          'ÂõΩÁΩë'
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 2 THEN
-          'Õ¯ °∫œº∆'
+          'ÁΩëÁúÅÂêàËÆ°'
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 3 THEN
-          '÷± Ùµ•Œª∫œº∆'
+          'Áõ¥Â±ûÂçï‰ΩçÂêàËÆ°'
          WHEN PS.UNITS IS NULL AND PS.ORG_CODE = 0 THEN
-          '∫œº∆'
+          'ÂêàËÆ°'
          ELSE
           PS.UNITS
        END) UNITS,
@@ -51,7 +51,7 @@ SELECT (CASE
                                        NVL(T.FUND_FOUR, 0) +
                                        NVL(T.FUND_FIVE, 0)) AS PRJFUND
                               FROM PM_PLAN_HS T
-                             WHERE T.PRJ_TYPE = '∞≤»´∑¿ª§ÃÂœµ'
+                             WHERE T.PRJ_TYPE = 'ÂÆâÂÖ®Èò≤Êä§‰ΩìÁ≥ª'
                              GROUP BY T.PRJ_TYPE, T.ORG_CODE), T2 AS (SELECT T.ORG_CODE,
                                                                              COUNT(*) AS PRJSUM,
                                                                              SUM(NVL(T.FUND_FIRST,
@@ -66,7 +66,7 @@ SELECT (CASE
                                                                                      0)) AS PRJFUND
                                                                         FROM PM_PLAN_HS T
                                                                        WHERE T.PRJ_TYPE =
-                                                                             '±Í◊ºπÊ∑∂ÃÂœµ'
+                                                                             'Ê†áÂáÜËßÑËåÉ‰ΩìÁ≥ª'
                                                                        GROUP BY T.PRJ_TYPE,
                                                                                 T.ORG_CODE), T3 AS (SELECT T.ORG_CODE,
                                                                                                            COUNT(*) AS PRJSUM,
@@ -82,7 +82,7 @@ SELECT (CASE
                                                                                                                    0)) AS PRJFUND
                                                                                                       FROM PM_PLAN_HS T
                                                                                                      WHERE T.PRJ_TYPE =
-                                                                                                           'π‹¿Ìµ˜øÿÃÂœµΩ®…Ë'
+                                                                                                           'ÁÆ°ÁêÜË∞ÉÊéß‰ΩìÁ≥ªÂª∫ËÆæ'
                                                                                                      GROUP BY T.PRJ_TYPE,
                                                                                                               T.ORG_CODE), T4 AS (SELECT T.ORG_CODE,
                                                                                                                                          COUNT(*) AS PRJSUM,
@@ -98,7 +98,7 @@ SELECT (CASE
                                                                                                                                                  0)) AS PRJFUND
                                                                                                                                     FROM PM_PLAN_HS T
                                                                                                                                    WHERE T.PRJ_TYPE =
-                                                                                                                                         '∆¿º€øº∫ÀÃÂœµ'
+                                                                                                                                         'ËØÑ‰ª∑ËÄÉÊ†∏‰ΩìÁ≥ª'
                                                                                                                                    GROUP BY T.PRJ_TYPE,
                                                                                                                                             T.ORG_CODE), T5 AS (SELECT T.ORG_CODE,
                                                                                                                                                                        COUNT(*) AS PRJSUM,
@@ -114,7 +114,7 @@ SELECT (CASE
                                                                                                                                                                                0)) AS PRJFUND
                                                                                                                                                                   FROM PM_PLAN_HS T
                                                                                                                                                                  WHERE T.PRJ_TYPE =
-                                                                                                                                                                       'ºº ı—–æøÃÂœµ'
+                                                                                                                                                                       'ÊäÄÊúØÁ†îÁ©∂‰ΩìÁ≥ª'
                                                                                                                                                                  GROUP BY T.PRJ_TYPE,
                                                                                                                                                                           T.ORG_CODE), T6 AS (SELECT T.ORG_CODE,
                                                                                                                                                                                                      COUNT(*) AS PRJSUM,
@@ -130,7 +130,7 @@ SELECT (CASE
                                                                                                                                                                                                              0)) AS PRJFUND
                                                                                                                                                                                                 FROM PM_PLAN_HS T
                                                                                                                                                                                                WHERE T.PRJ_TYPE =
-                                                                                                                                                                                                     '»À≤≈∂”ŒÈÃÂœµ'
+                                                                                                                                                                                                     '‰∫∫ÊâçÈòü‰ºç‰ΩìÁ≥ª'
                                                                                                                                                                                                GROUP BY T.PRJ_TYPE,
                                                                                                                                                                                                         T.ORG_CODE)
                  SELECT DISTINCT T.ORG_NAME AS UNITS,

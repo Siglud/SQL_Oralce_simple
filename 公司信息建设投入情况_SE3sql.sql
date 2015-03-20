@@ -1,4 +1,4 @@
---–ﬁ∏ƒπ˝∫Ûµƒπ´Àæ–≈œ¢Ω®…ËÕ∂»Î±Ì£¨»Áπ˚µ±‘¬√ª”–÷µ‘Ú»°…œ∏ˆ‘¬∑›µƒ ˝÷µ
+--‰øÆÊîπËøáÂêéÁöÑÂÖ¨Âè∏‰ø°ÊÅØÂª∫ËÆæÊäïÂÖ•Ë°®ÔºåÂ¶ÇÊûúÂΩìÊúàÊ≤°ÊúâÂÄºÂàôÂèñ‰∏ä‰∏™Êúà‰ªΩÁöÑÊï∞ÂÄº
 WITH THISYEARS AS
  (SELECT 2012 THISYEAR FROM DUAL),
 THISMONTHS AS
@@ -12,16 +12,16 @@ YEARPLAN AS
    GROUP BY VP.ORG_NO)
 SELECT OGG.ORGAN_CODE AS ORG_NO,
        DECODE(OGG.ORGAN_NAME,
-              'ª™±±µÁÕ¯”–œﬁπ´Àæ',
-              'ª™±±∑÷≤ø',
-              'ª™∂´µÁÕ¯”–œﬁπ´Àæ',
-              'ª™∂´∑÷≤ø',
-              'ª™÷–µÁÕ¯”–œﬁπ´Àæ',
-              'ª™÷–∑÷≤ø',
-              '∂´±±”–œﬁπ´ÀæµÁÕ¯',
-              '∂´±±∑÷≤ø',
-              'Œ˜±±µÁÕ¯”–œﬁπ´Àæ',
-              'Œ˜±±∑÷≤ø',
+              'ÂçéÂåóÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+              'ÂçéÂåóÂàÜÈÉ®',
+              'Âçé‰∏úÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+              'Âçé‰∏úÂàÜÈÉ®',
+              'Âçé‰∏≠ÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+              'Âçé‰∏≠ÂàÜÈÉ®',
+              '‰∏úÂåóÊúâÈôêÂÖ¨Âè∏ÁîµÁΩë',
+              '‰∏úÂåóÂàÜÈÉ®',
+              'Ë•øÂåóÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+              'Ë•øÂåóÂàÜÈÉ®',
               OGG.ORGAN_NAME) AS ORG_NAME,
        NVL(NDJH, 0) YEARPLANMONEY,
        NVL(MB.LJTZ, 0) LJTZ,
@@ -32,7 +32,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
               '-',
               REGEXP_REPLACE(ROUND((MB.LJTZ / MB.NDJH) * 100, 2),
                              '^\.',
-                             '0.')) COMPLETEPERCENT, --“—ÕÍ≥…
+                             '0.')) COMPLETEPERCENT, --Â∑≤ÂÆåÊàê
        DECODE(MB.SQ,
               0,
               '-',
@@ -40,22 +40,22 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
               '-',
               REGEXP_REPLACE(ROUND((MB.LJTZ - SQ) / SQ * 100, 2),
                              '^\.',
-                             '0.')) CHAINNUMBER, --Õ¨±»
+                             '0.')) CHAINNUMBER, --ÂêåÊØî
        NVL(ZBJ, 0) CAPITALMONEY,
        NVL(CBJ, 0) COSTMONEY
-  FROM --∞—π´Àæµƒ√˚◊÷≤¢Ω¯¿¥
+  FROM --ÊääÂÖ¨Âè∏ÁöÑÂêçÂ≠óÂπ∂ËøõÊù•
        (SELECT ORGAN_CODE,
                DECODE(ORGAN_NAME,
-                      'ª™±±µÁÕ¯”–œﬁπ´Àæ',
-                      'ª™±±∑÷≤ø',
-                      'ª™∂´µÁÕ¯”–œﬁπ´Àæ',
-                      'ª™∂´∑÷≤ø',
-                      'ª™÷–µÁÕ¯”–œﬁπ´Àæ',
-                      'ª™÷–∑÷≤ø',
-                      '∂´±±”–œﬁπ´ÀæµÁÕ¯',
-                      '∂´±±∑÷≤ø',
-                      'Œ˜±±µÁÕ¯”–œﬁπ´Àæ',
-                      'Œ˜±±∑÷≤ø',
+                      'ÂçéÂåóÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+                      'ÂçéÂåóÂàÜÈÉ®',
+                      'Âçé‰∏úÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+                      'Âçé‰∏úÂàÜÈÉ®',
+                      'Âçé‰∏≠ÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+                      'Âçé‰∏≠ÂàÜÈÉ®',
+                      '‰∏úÂåóÊúâÈôêÂÖ¨Âè∏ÁîµÁΩë',
+                      '‰∏úÂåóÂàÜÈÉ®',
+                      'Ë•øÂåóÁîµÁΩëÊúâÈôêÂÖ¨Âè∏',
+                      'Ë•øÂåóÂàÜÈÉ®',
                       ORGAN_NAME) AS ORGAN_NAME,
                ORG_NO,
                SORT_ORDER,
@@ -64,7 +64,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
                   FROM V_STRU S
                  WHERE (S.ORGAN_TYPE = '1' OR S.ORGAN_TYPE = '13')
                    AND S.F_ORGAN_CODE = '100000') ORGS
-        --≤¢»Î∑÷◊È∫Õ≈≈–Ú√˚≥∆
+        --Âπ∂ÂÖ•ÂàÜÁªÑÂíåÊéíÂ∫èÂêçÁß∞
           LEFT JOIN (SELECT S.ORG_NO, S.SORT_ORDER, S.ORG_ORDER
                       FROM PM_IMR_ORG_SORTS S) SOS
             ON ORGS.ORGAN_CODE = SOS.ORG_NO
@@ -75,24 +75,24 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
                         T.SORT_ORDER AS SORT_ORDER,
                         0 AS ORG_ORDER
           FROM PM_IMR_ORG_SORTS T
-        --≤¢»Îº∏∏ˆ∫œº∆÷µµƒ√˚≥∆
+        --Âπ∂ÂÖ•Âá†‰∏™ÂêàËÆ°ÂÄºÁöÑÂêçÁß∞
         UNION ALL
         SELECT '1' AS ORG_CODE,
-               '◊‹º∆' AS ORGAN_NAME,
+               'ÊÄªËÆ°' AS ORGAN_NAME,
                '1' AS ORG_NO,
                0 AS SORT_ORDER,
                0 AS ORG_ORDER
           FROM DUAL
         UNION ALL
         SELECT '5' AS ORG_CODE,
-               'π´Àæ∫œº∆' AS ORGAN_NAME,
+               'ÂÖ¨Âè∏ÂêàËÆ°' AS ORGAN_NAME,
                '5' AS ORG_NO,
                5 AS SORT_ORDER,
                0 AS ORG_ORDER
           FROM DUAL
         UNION ALL
         SELECT '8' AS ORG_CODE,
-               '÷± Ùµ•Œª∫œº∆' AS ORGAN_NAME,
+               'Áõ¥Â±ûÂçï‰ΩçÂêàËÆ°' AS ORGAN_NAME,
                '8' AS ORG_NO,
                65 AS SORT_ORDER,
                0 AS ORG_ORDER
@@ -126,7 +126,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
             TO_NUMBER(T.ORG_NO)
          END) AS ORG_NO
     FROM (
-          --…œƒÍ∂»             
+          --‰∏äÂπ¥Â∫¶             
           SELECT O.ORG_NO,
                   0               YEARPLAN,
                   P.LJ_TOTAL_FUND MONTHPLAN,
@@ -136,7 +136,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
             FROM PM_IMR_ORG O
             LEFT JOIN PM_IMR_PROJECT P
               ON O.MON_ORG_ID = P.MON_ORG_ID
-           WHERE O.RPT_YEAR = (SELECT LASTYEAR FROM LASTYEARS) --…Ë÷√Œ™…œƒÍ
+           WHERE O.RPT_YEAR = (SELECT LASTYEAR FROM LASTYEARS) --ËÆæÁΩÆ‰∏∫‰∏äÂπ¥
              AND O.RPT_STATE IN (2, 3, 4, 5)
              AND O.RPT_MONTH =
                  (SELECT MAX(T.RPT_MONTH)
@@ -146,7 +146,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
                      AND T.RPT_MONTH >= (SELECT THISMONTH FROM THISMONTHS) - 1
                      AND T.RPT_STATE IN (2, 3, 4, 5))
           UNION ALL
-          --»°ƒÍ∂»º∆ªÆ÷µ◊®”√¡–
+          --ÂèñÂπ¥Â∫¶ËÆ°ÂàíÂÄº‰∏ìÁî®Âàó
           SELECT DISTINCT O.ORGAN_CODE ORG_NO,
                           Y.YP     YEARPLAN,
                           0        MONTHPLAN,
@@ -160,7 +160,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
             LEFT JOIN YEARPLAN Y
               ON O.ORGAN_CODE = Y.ORG_NO
           UNION ALL
-          --±æƒÍ∂»
+          --Êú¨Âπ¥Â∫¶
           SELECT O.ORG_NO,
                  0                 YEARPLAN,
                  P.LJ_TOTAL_FUND   MONTHPLAN,
@@ -170,7 +170,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
             FROM PM_IMR_ORG O
             LEFT JOIN PM_IMR_PROJECT P
               ON O.MON_ORG_ID = P.MON_ORG_ID
-           WHERE O.RPT_YEAR = (SELECT THISYEAR FROM THISYEARS) --…Ë÷√Œ™µ±«∞ƒÍ5
+           WHERE O.RPT_YEAR = (SELECT THISYEAR FROM THISYEARS) --ËÆæÁΩÆ‰∏∫ÂΩìÂâçÂπ¥5
              AND O.RPT_STATE IN (2, 3, 4, 5)
              AND O.RPT_MONTH =
                  (SELECT MAX(T.RPT_MONTH)
@@ -178,7 +178,7 @@ SELECT OGG.ORGAN_CODE AS ORG_NO,
                    WHERE T.RPT_YEAR = (SELECT THISYEAR FROM THISYEARS)
                      AND T.RPT_MONTH <= (SELECT THISMONTH FROM THISMONTHS)
                      AND T.RPT_MONTH >= (SELECT THISMONTH FROM THISMONTHS) - 1
-                     AND T.RPT_STATE IN (2, 3, 4, 5))) T --…Ë÷√Œ™µ±«∞ƒÍ
+                     AND T.RPT_STATE IN (2, 3, 4, 5))) T --ËÆæÁΩÆ‰∏∫ÂΩìÂâçÂπ¥
     LEFT JOIN PM_IMR_ORG_SORTS SO
       ON SO.ORG_NO = T.ORG_NO
    GROUP BY ROLLUP(DECODE(SO.SORT_ORDER, 70, 0, 1), SO.SORT_ORDER, T.ORG_NO)) MB
