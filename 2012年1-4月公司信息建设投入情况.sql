@@ -1,4 +1,4 @@
---×¨ÒµÊä³ö2012Äê1-4ÔÂ±¨±íÊý¾Ý
+--ä¸“ä¸šè¾“å‡º2012å¹´1-4æœˆæŠ¥è¡¨æ•°æ®
 SELECT A.ORG_ID,
 A.ORG_NAME,
                A.YEARPLAN_MONEY,
